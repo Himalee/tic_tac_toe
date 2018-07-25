@@ -5,12 +5,15 @@ class Display
   end
 
   def present_board(grid)
-    size_of_grid = Math.sqrt(grid.size)
     position_in_array = 0
     while position_in_array < grid.size
-      @console.present(grid.slice(position_in_array, size_of_grid).join(" "))
-      position_in_array += size_of_grid
+      @console.present(grid.slice(position_in_array, size_of_grid(grid)).join(" "))
+      position_in_array += size_of_grid(grid)
     end
+  end
+
+  def size_of_grid(grid)
+    Math.sqrt(grid.size)
   end
 
   def welcome
