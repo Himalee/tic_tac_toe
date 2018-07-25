@@ -1,7 +1,8 @@
 class Display
 
-  def initialize(console = Console.new)
+  def initialize(console = Console.new, message)
     @console = console
+    @message = message
   end
 
   def present_board(grid)
@@ -17,11 +18,11 @@ class Display
   end
 
   def welcome
-    @console.present("Welcome to Tic Tac Toe")
+    @console.present(@message.welcome)
   end
 
   def choose_cell
-    @console.present("Pick a number between 1 and 9 to place your mark")
+    @console.present(@message.prompt_for_cell)
   end
 
   def receive_cell_choice
