@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require_relative "board"
+require_relative "display"
+require_relative "console"
+require_relative "game"
+
+board = Board.new(9)
+display = Display.new
+game = Game.new(display, board)
+game.play
