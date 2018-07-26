@@ -10,6 +10,6 @@ describe Game do
     display = Display.new(console, message)
     game = Game.new(display, board)
     game.play
-    expect(output.string).to include("X X X\nO O 6\n7 8 9\n")
+    expect(output.string).to include("[X] [X] [X] \n[O] [O] [6] \n[7] [8] [9] \n")
   end
 end

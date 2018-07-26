@@ -7,14 +7,16 @@ class Display
 
   public
 
-  def present_board(grid)
-    position_in_array = 0
-    while position_in_array < grid.size
-      @console.present(grid.slice(position_in_array, size_of_grid(grid)).join(" "))
-      position_in_array += size_of_grid(grid)
-    end
+  def present_board_with_squares(grid)
+    board = ""
+    grid.each_with_index { |cell, index|
+      board << "[#{cell}] "
+    if (index + 1) % size_of_grid(grid) == 0
+      board << "\n"
+    end }
+    @console.present(board)
   end
-  
+
   def size_of_grid(grid)
     Math.sqrt(grid.size)
   end
