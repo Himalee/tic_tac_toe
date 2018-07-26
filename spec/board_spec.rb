@@ -44,8 +44,4 @@ describe Board do
   it "returns possible diagonals" do
     expect(@board.possible_diagonals).to eql([[1, 5, 9], [3, 5, 7]])
   end
-
-  it "test" do
-    expect(@board.all_winning_combinations).to eql("")
-  end
 end
