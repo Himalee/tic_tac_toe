@@ -1,5 +1,7 @@
 class Message
 
+  public 
+
   def welcome
     "Welcome to Tic Tac Toe"
   end

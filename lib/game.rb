@@ -4,11 +4,15 @@ class Game
     @board = board
   end
 
+  public
+
   def play
     welcome_players
     present_board
     turn
   end
+
+  private
 
   def welcome_players
     @display.welcome
