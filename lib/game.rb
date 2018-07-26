@@ -1,4 +1,8 @@
 class Game
+
+  PLAYER_ONE_MARK = "X"
+  PLAYER_TWO_MARK = "O"
+
   def initialize(display, board)
     @display = display
     @board = board
@@ -9,7 +13,7 @@ class Game
   def play
     welcome_players
     present_board
-    turn
+    player_turns
   end
 
   private
@@ -22,10 +26,18 @@ class Game
     @display.present_board(@board.grid)
   end
 
-  def turn
+  def player_turns
+    one_turn(PLAYER_ONE_MARK)
+    until @board.win?
+      one_turn(PLAYER_TWO_MARK)
+      player_turns
+    end
+  end
+
+  def one_turn(mark)
     @display.choose_cell
     number = @display.receive_cell_choice
-    @board.mark_board(number, "X")
+    @board.mark_board(number, mark)
     @display.present_board(@board.grid)
   end
 end
