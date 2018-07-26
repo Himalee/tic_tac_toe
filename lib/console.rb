@@ -4,6 +4,8 @@ class Console
     @input = input
   end
 
+  public
+  
   def present(message)
     @output.puts message
   end
