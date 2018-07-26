@@ -4,6 +4,7 @@ class Board
 
   FIRST_ELEMENT = 0
   NUMBER_ONE = 1
+  NUMBER_TWO = 2
 
   def initialize(size)
     @size = size
@@ -48,6 +49,23 @@ class Board
     diagonals
   end
 
+  def dimension
+    Math.sqrt(size)
+  end
+
+  def win?
+    position = FIRST_ELEMENT
+    array_of_results = []
+    until position == number_of_possible_combinations || array_of_results.include?(true)
+      line = all_winning_combinations[position]
+      array_of_results << includes_identical_elements?(line)
+      position += NUMBER_ONE
+    end
+    array_of_results.include?(true)
+  end
+
+  private
+
   def add_column(position)
     cells = []
     until cells.count == dimension
@@ -70,8 +88,8 @@ class Board
     a.send(operation, b)
   end
 
-  def dimension
-    Math.sqrt(size)
+  def number_of_possible_combinations
+    dimension * NUMBER_TWO + NUMBER_TWO
   end
 
   def all_winning_combinations
@@ -79,6 +97,10 @@ class Board
     combinations << possible_rows
     combinations << possible_columns
     combinations << possible_diagonals
-    combinations.flatten(1)
+    combinations.flatten(NUMBER_ONE)
+  end
+
+  def includes_identical_elements?(line)
+    line.all? { |cell| cell == line[0] }
   end
 end
