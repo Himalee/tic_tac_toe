@@ -29,7 +29,7 @@ class Game
   def turns
     current_player = PLAYER_ONE_MARK
     opponent = PLAYER_TWO_MARK
-    until @board.end_of_game
+    until @board.end_of_game?
       @player.turn(@display, @board, current_player)
       current_player, opponent = opponent, current_player
     end

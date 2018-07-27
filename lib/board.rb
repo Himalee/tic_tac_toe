@@ -47,32 +47,18 @@ class Board
     diagonals
   end
 
-  def end_of_game
+  def end_of_game?
     win? || draw?
   end
 
   def win?
-    position = FIRST_ELEMENT
-    array_of_results = []
-    until position == number_of_possible_combinations || array_of_results.include?(true)
-      line = all_winning_combinations[position]
-      array_of_results << includes_identical_elements?(line)
-      position += NUMBER_ONE
-    end
-    array_of_results.include?(true)
+    all_winning_combinations.any? { |line| includes_identical_elements?(line)}
   end
 
   def winning_mark
-    position = FIRST_ELEMENT
-    result = []
-    until position == number_of_possible_combinations || result.include?(true)
-      line = all_winning_combinations[position]
-      position += NUMBER_ONE
-      if includes_identical_elements(line)
-        result << line
-      end
-    end
-    result.flatten[0]
+    line = []
+    line << all_winning_combinations.find { |line| includes_identical_elements?(line)}
+    line.flatten[0]
   end
 
   private
@@ -117,11 +103,5 @@ class Board
 
   def includes_identical_elements?(line)
     line.all? { |cell| cell == line[0] }
-  end
-
-  def includes_identical_elements(line)
-    if line.all? { |cell| cell == line[0] }
-      line[0]
-    end
   end
 end

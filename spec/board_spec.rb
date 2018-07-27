@@ -54,4 +54,9 @@ describe Board do
     @board.mark_board(3, "X")
     expect(@board.winning_mark).to eql("X")
   end
+
+  it "returns nil winning mark" do
+    @board.mark_board(1, "X")
+    expect(@board.winning_mark).to be nil
+  end
 end
