@@ -14,7 +14,7 @@ class Display
       position_in_array += size_of_grid(grid)
     end
   end
-  
+
   def size_of_grid(grid)
     Math.sqrt(grid.size)
   end
@@ -29,5 +29,17 @@ class Display
 
   def receive_cell_choice
     @console.receive.to_i
+  end
+
+  def player_one_wins
+    @console.present(@message.player_one_wins)
+  end
+
+  def player_two_wins
+    @console.present(@message.player_two_wins)
+  end
+
+  def draw
+    @console.present(@message.draw)
   end
 end

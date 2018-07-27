@@ -53,6 +53,10 @@ class Board
     Math.sqrt(size)
   end
 
+  def end_of_game
+    win? || draw?
+  end
+
   def win?
     position = FIRST_ELEMENT
     array_of_results = []
@@ -62,6 +66,19 @@ class Board
       position += NUMBER_ONE
     end
     array_of_results.include?(true)
+  end
+
+  def winning_mark
+    position = FIRST_ELEMENT
+    result = []
+    until position == number_of_possible_combinations || result.include?(true)
+      line = all_winning_combinations[position]
+      position += NUMBER_ONE
+      if includes_identical_elements(line)
+        result << line
+      end
+    end
+    result.flatten[0]
   end
 
   private
@@ -92,6 +109,10 @@ class Board
     dimension * NUMBER_TWO + NUMBER_TWO
   end
 
+  def draw?
+    @grid.all? { |i| i.is_a?(String) }
+  end
+
   def all_winning_combinations
     combinations = []
     combinations << possible_rows
@@ -102,5 +123,11 @@ class Board
 
   def includes_identical_elements?(line)
     line.all? { |cell| cell == line[0] }
+  end
+
+  def includes_identical_elements(line)
+    if line.all? { |cell| cell == line[0] }
+      line[0]
+    end
   end
 end

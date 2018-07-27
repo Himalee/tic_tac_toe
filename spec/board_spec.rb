@@ -47,4 +47,11 @@ describe Board do
     @board.mark_board(3, "X")
     expect(@board.win?).to be true
   end
+
+  it "returns winning mark X" do
+    @board.mark_board(1, "X")
+    @board.mark_board(2, "X")
+    @board.mark_board(3, "X")
+    expect(@board.winning_mark).to eql("X")
+  end
 end
