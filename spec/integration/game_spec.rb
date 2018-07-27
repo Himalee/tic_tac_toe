@@ -1,5 +1,6 @@
 require "game"
 require "player"
+require "peg"
 
 describe Game do
 
