@@ -12,11 +12,11 @@ class Board
   end
 
   def create_grid
-    (NUMBER_ONE..(@dimension ** NUMBER_TWO)).to_a
+    (NUMBER_ONE..(max_number_of_cells)).to_a
   end
 
   def mark_board(cell_number, mark)
-    @grid[cell_number - NUMBER_ONE] = mark
+    @grid[index_position(cell_number)] = mark
   end
 
   def possible_rows
@@ -46,11 +46,19 @@ class Board
   def winning_mark
     if win?
       winning_line = all_winning_combinations.find { |line| includes_identical_elements?(line)}
-      winning_line[0]
+      winning_line[FIRST_ELEMENT]
     end
   end
 
   private
+
+  def max_number_of_cells
+    @dimension ** NUMBER_TWO
+  end
+
+  def index_position(cell_number)
+    cell_number - NUMBER_ONE
+  end
 
   def add_diagonal(position, operation)
     cells = []
@@ -82,6 +90,6 @@ class Board
   end
 
   def includes_identical_elements?(line)
-    line.all? { |cell| cell == line[0] }
+    line.all? { |cell| cell == line[FIRST_ELEMENT] }
   end
 end
