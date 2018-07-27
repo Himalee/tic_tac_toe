@@ -22,7 +22,7 @@ class Game
   end
 
   def present_board
-    @display.present_board(@board.grid)
+    @display.present_board_with_squares(@board)
   end
 
   def player_turns
@@ -38,7 +38,7 @@ class Game
     @display.choose_cell
     number = @display.receive_cell_choice
     @board.mark_board(number, mark)
-    @display.present_board(@board.grid)
+    @display.present_board_with_squares(@board)
   end
 
   def present_winner

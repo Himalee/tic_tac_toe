@@ -5,16 +5,19 @@ class Display
     @message = message
   end
 
-  def present_board(grid)
-    position_in_array = 0
-    while position_in_array < grid.size
-      @console.present(grid.slice(position_in_array, size_of_grid(grid)).join(" "))
-      position_in_array += size_of_grid(grid)
-    end
+  def present_board_with_squares(board)
+    grid = board.grid
+    presentable_board = ""
+    grid.each_with_index { |cell, index|
+      presentable_board << "[#{cell}] "
+    if (index + 1) % board.dimension == 0
+      presentable_board << "\n"
+    end }
+    @console.present(presentable_board)
   end
 
-  def size_of_grid(grid)
-    Math.sqrt(grid.size)
+  def dimension(board)
+    board.dimension
   end
 
   def welcome

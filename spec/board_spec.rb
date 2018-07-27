@@ -3,7 +3,7 @@ require "board"
 describe Board do
 
   before :each do
-    size = 9
+    size = 3
     @board = Board.new(size)
   end
 

@@ -3,7 +3,7 @@ require "game"
 describe Game do
 
   before :each do
-    @board = Board.new(9)
+    @board = Board.new(3)
     @output = StringIO.new
     @message = Message.new
   end
@@ -14,7 +14,7 @@ describe Game do
     display = Display.new(console, @message)
     game = Game.new(display, @board)
     game.play
-    expect(@output.string).to include("X X X\nO O 6\n7 8 9\n")
+    expect(@output.string).to include("[X] [X] [X] \n[O] [O] [6] \n[7] [8] [9] \n")
   end
 
   it "returns win" do

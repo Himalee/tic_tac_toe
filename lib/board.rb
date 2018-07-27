@@ -1,18 +1,18 @@
 class Board
 
-  attr_reader :size, :grid
+  attr_reader :dimension, :grid
 
   FIRST_ELEMENT = 0
   NUMBER_ONE = 1
   NUMBER_TWO = 2
 
   def initialize(size)
-    @size = size
+    @dimension = size
     @grid = create_grid
   end
 
   def create_grid
-    (NUMBER_ONE..@size).to_a
+    (NUMBER_ONE..(@dimension ** NUMBER_TWO)).to_a
   end
 
   def mark_board(number, mark)
@@ -22,9 +22,9 @@ class Board
   def possible_rows
     rows = []
     position = FIRST_ELEMENT
-    until rows.count == dimension
-      rows << @grid.slice(position, dimension)
-      position += dimension
+    until rows.count == @dimension
+      rows << @grid.slice(position, @dimension)
+      position += @dimension
     end
     rows
   end
@@ -32,7 +32,7 @@ class Board
   def possible_columns
     columns = []
     position = FIRST_ELEMENT
-    until columns.count == dimension
+    until columns.count == @dimension
       columns << add_column(position)
       position += NUMBER_ONE
     end
@@ -43,12 +43,8 @@ class Board
     diagonals = []
     position = FIRST_ELEMENT
     diagonals << add_diagonal(position, :+)
-    diagonals << add_diagonal(position + dimension - NUMBER_ONE, :-)
+    diagonals << add_diagonal(position + @dimension - NUMBER_ONE, :-)
     diagonals
-  end
-
-  def dimension
-    Math.sqrt(size)
   end
 
   def end_of_game
@@ -83,18 +79,18 @@ class Board
 
   def add_column(position)
     cells = []
-    until cells.count == dimension
+    until cells.count == @dimension
       cells << @grid[position]
-      position += dimension
+      position += @dimension
     end
     cells
   end
 
   def add_diagonal(position, operation)
     cells = []
-    until cells.count == dimension
+    until cells.count == @dimension
       cells << @grid[position]
-      position += calculation(dimension, NUMBER_ONE, operation)
+      position += calculation(@dimension, NUMBER_ONE, operation)
     end
     cells
   end
@@ -104,7 +100,7 @@ class Board
   end
 
   def number_of_possible_combinations
-    dimension * NUMBER_TWO + NUMBER_TWO
+    @dimension * NUMBER_TWO + NUMBER_TWO
   end
 
   def draw?
