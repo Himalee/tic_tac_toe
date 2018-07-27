@@ -15,8 +15,8 @@ class Board
     (NUMBER_ONE..(@dimension ** NUMBER_TWO)).to_a
   end
 
-  def mark_board(number, mark)
-    @grid[number - NUMBER_ONE] = mark
+  def mark_board(cell_number, mark)
+    @grid[cell_number - NUMBER_ONE] = mark
   end
 
   def possible_rows
