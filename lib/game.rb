@@ -3,15 +3,16 @@ class Game
   PLAYER_ONE_MARK = "X"
   PLAYER_TWO_MARK = "O"
 
-  def initialize(display, board)
+  def initialize(display, board, player)
     @display = display
     @board = board
+    @player = player
   end
 
   def play
     welcome_players
     present_board
-    player_turns
+    turns
     present_winner
   end
 
@@ -25,20 +26,13 @@ class Game
     @display.present_board_with_squares(@board)
   end
 
-  def player_turns
+  def turns
     current_player = PLAYER_ONE_MARK
     opponent = PLAYER_TWO_MARK
     until @board.end_of_game
-      one_turn(current_player)
+      @player.turn(@display, @board, current_player)
       current_player, opponent = opponent, current_player
     end
-  end
-
-  def one_turn(mark)
-    @display.choose_cell
-    number = @display.receive_integer
-    @board.mark_board(number, mark)
-    @display.present_board_with_squares(@board)
   end
 
   def present_winner

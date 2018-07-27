@@ -4,6 +4,7 @@ require_relative "display"
 require_relative "console"
 require_relative "game"
 require_relative "message"
+require_relative "player"
 
-game = Game.new(Display.new(Message.new), Board.new(9))
+game = Game.new(Display.new(Message.new), Board.new(3), Player.new)
 game.play
