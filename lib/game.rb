@@ -13,7 +13,7 @@ class Game
     welcome_players
     present_board
     turns
-    present_winner
+    present_result
   end
 
   private
@@ -35,7 +35,7 @@ class Game
     end
   end
 
-  def present_winner
+  def present_result
     if @board.winning_mark == PLAYER_ONE_MARK
       @display.player_one_wins
     elsif @board.winning_mark == PLAYER_TWO_MARK

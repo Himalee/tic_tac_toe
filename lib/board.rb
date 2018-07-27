@@ -20,23 +20,11 @@ class Board
   end
 
   def possible_rows
-    rows = []
-    position = FIRST_ELEMENT
-    until rows.count == @dimension
-      rows << @grid.slice(position, @dimension)
-      position += @dimension
-    end
-    rows
+    @grid.each_slice(@dimension).to_a
   end
 
   def possible_columns
-    columns = []
-    position = FIRST_ELEMENT
-    until columns.count == @dimension
-      columns << add_column(position)
-      position += NUMBER_ONE
-    end
-    columns
+    possible_rows.transpose
   end
 
   def possible_diagonals
@@ -56,21 +44,13 @@ class Board
   end
 
   def winning_mark
-    line = []
-    line << all_winning_combinations.find { |line| includes_identical_elements?(line)}
-    line.flatten[0]
+    if win?
+      winning_line = all_winning_combinations.find { |line| includes_identical_elements?(line)}
+      winning_line[0]
+    end
   end
 
   private
-
-  def add_column(position)
-    cells = []
-    until cells.count == @dimension
-      cells << @grid[position]
-      position += @dimension
-    end
-    cells
-  end
 
   def add_diagonal(position, operation)
     cells = []
