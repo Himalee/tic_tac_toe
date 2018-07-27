@@ -36,7 +36,7 @@ class Game
 
   def one_turn(mark)
     @display.choose_cell
-    number = @display.receive_cell_choice
+    number = @display.receive_integer
     @board.mark_board(number, mark)
     @display.present_board_with_squares(@board)
   end

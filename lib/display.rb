@@ -28,7 +28,7 @@ class Display
     @console.present(@message.prompt_for_cell)
   end
 
-  def receive_cell_choice
+  def receive_integer
     @console.receive.to_i
   end
 
