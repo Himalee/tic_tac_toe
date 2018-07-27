@@ -11,8 +11,6 @@ class Board
     @grid = create_grid
   end
 
-  public
-
   def create_grid
     (NUMBER_ONE..@size).to_a
   end

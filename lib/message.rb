@@ -1,7 +1,5 @@
 class Message
-
-  public
-
+  
   def welcome
     "Welcome to Tic Tac Toe\nPlayer one = X\nPlayer two = O"
   end

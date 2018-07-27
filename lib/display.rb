@@ -5,8 +5,6 @@ class Display
     @message = message
   end
 
-  public
-
   def present_board(grid)
     position_in_array = 0
     while position_in_array < grid.size
