@@ -28,8 +28,15 @@ class Display
     @console.receive.to_i
   end
 
-  def receive_character
-    @console.receive
+  def valid_play_again_response
+    response = receive_lower_case_character.downcase
+    valid_options = ["y", "n"]
+    if !valid_options.include?(response)
+      play_again
+      valid_play_again_response
+    else
+      response
+    end
   end
 
   def player_one_wins
@@ -46,5 +53,11 @@ class Display
 
   def play_again
     @console.present(@message.replay)
+  end
+
+  private
+
+  def receive_lower_case_character
+    @console.receive
   end
 end

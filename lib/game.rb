@@ -48,8 +48,8 @@ class Game
 
   def play_again
     @display.play_again
-    until @display.receive_character == "n"
+    until @display.valid_play_again_response
       play
-    end 
+    end
   end
 end
