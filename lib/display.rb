@@ -32,6 +32,10 @@ class Display
     @console.receive.to_i
   end
 
+  def receive_character
+    @console.receive
+  end
+
   def player_one_wins
     @console.present(@message.player_one_wins)
   end
@@ -42,5 +46,9 @@ class Display
 
   def draw
     @console.present(@message.draw)
+  end
+
+  def play_again
+    @console.present(@message.replay)
   end
 end
