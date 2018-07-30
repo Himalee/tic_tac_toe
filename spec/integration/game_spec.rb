@@ -5,7 +5,8 @@ require "peg"
 describe Game do
 
   before :each do
-    @board = Board.new(3)
+    dimension = 3
+    @board = Board.new(dimension)
     @output = StringIO.new
     @message = Message.new
     @player = Player.new
