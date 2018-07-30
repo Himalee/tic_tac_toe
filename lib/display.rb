@@ -16,10 +16,6 @@ class Display
     @console.present(presentable_board)
   end
 
-  def dimension(board)
-    board.dimension
-  end
-
   def welcome
     @console.present(@message.welcome)
   end
