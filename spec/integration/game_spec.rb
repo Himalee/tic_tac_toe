@@ -21,8 +21,8 @@ describe Game do
     expect(@output.string).to include("[X] [X] [X] \n[O] [O] [6] \n[7] [8] [9] \n")
   end
 
-  it "returns win" do
-    input = StringIO.new("1\n4\n2\n5\n7\n6\nn")
+  it "returns win with invalid choices" do
+    input = StringIO.new("1\n1\n4\nhello\n2\n5\n7\n6\nn")
     console = Console.new(@output, input)
     display = Display.new(console, @message)
     game = Game.new(display, @board, @player)

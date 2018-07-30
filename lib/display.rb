@@ -26,7 +26,7 @@ class Display
 
   def valid_cell_choice(board)
     response = receive_integer
-    valid_options = board.create_grid
+    valid_options = board.grid.reject{|cell| cell.to_s[/[^1-9]/] }
     if !valid_options.include?(response)
       choose_cell
       valid_cell_choice(board)
