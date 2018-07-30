@@ -24,8 +24,15 @@ class Display
     @console.present(@message.prompt_for_cell)
   end
 
-  def receive_integer
-    @console.receive.to_i
+  def valid_cell_choice(board)
+    response = receive_integer
+    valid_options = board.create_grid
+    if !valid_options.include?(response)
+      choose_cell
+      valid_cell_choice(board)
+    else
+      response
+    end
   end
 
   def valid_play_again_response
@@ -59,5 +66,9 @@ class Display
 
   def receive_lower_case_character
     @console.receive
+  end
+
+  def receive_integer
+    @console.receive.to_i
   end
 end
