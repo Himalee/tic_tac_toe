@@ -3,9 +3,10 @@ class Game
   PLAYER_ONE_MARK = "X"
   PLAYER_TWO_MARK = "O"
 
-  def initialize(display, board)
+  def initialize(display, board, players)
     @display = display
     @board = board
+    @players = players
   end
 
   def play
@@ -27,11 +28,10 @@ class Game
   end
 
   def turns
-    current_player = Peg::PLAYER_ONE_MARK
-    opponent = Peg::PLAYER_TWO_MARK
+    current_player = @players[0]
+    opponent = @players[1]
     until @board.end_of_game?
-      human_player = HumanPlayer.new(@board, @display)
-      human_player.turn(current_player)
+      current_player.turn
       current_player, opponent = opponent, current_player
     end
   end
@@ -48,8 +48,10 @@ class Game
 
   def play_again
     @display.play_again
-    until @display.valid_play_again_response
-      play
+    choice = @display.valid_play_again_response
+    if choice == "y"
+      game = Game.new(Display.new(Message.new), Board.new(3))
+      game.play
     end
   end
 end

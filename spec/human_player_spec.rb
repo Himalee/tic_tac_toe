@@ -16,7 +16,7 @@ describe HumanPlayer do
     input = StringIO.new("hello\n33\n3")
     console = Console.new(@output, input)
     display = Display.new(console, @message)
-    human_player = HumanPlayer.new(@board, display)
+    human_player = HumanPlayer.new(@board, display, "")
     expect(human_player.get_cell).to eql(3)
   end
 end

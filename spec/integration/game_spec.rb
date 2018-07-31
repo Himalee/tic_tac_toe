@@ -20,7 +20,8 @@ describe Game do
     input = StringIO.new("1\n4\n2\n5\n3\nn")
     console = Console.new(@output, input)
     display = Display.new(console, @message)
-    game = Game.new(display, @board)
+    players = [HumanPlayer.new(@board, display, Peg::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Peg::PLAYER_TWO_MARK)]
+    game = Game.new(display, @board, players)
     game.play
     expect(@output.string).to include(" X │ X │ X \n───┼───┼───\n O │ O │ 6 \n───┼───┼───\n 7 │ 8 │ 9\n")
   end
@@ -29,7 +30,8 @@ describe Game do
     input = StringIO.new("1\n1\n4\nhello\n2\n5\n7\n6\nn")
     console = Console.new(@output, input)
     display = Display.new(console, @message)
-    game = Game.new(display, @board)
+    players = [HumanPlayer.new(@board, display, Peg::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Peg::PLAYER_TWO_MARK)]
+    game = Game.new(display, @board, players)
     game.play
     expect(@output.string).to include("Player two wins")
   end
@@ -38,7 +40,8 @@ describe Game do
     input = StringIO.new("1\n2\n3\n4\n6\n9\n7\n5\n8\nn")
     console = Console.new(@output, input)
     display = Display.new(console, @message)
-    game = Game.new(display, @board)
+    players = [HumanPlayer.new(@board, display, Peg::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Peg::PLAYER_TWO_MARK)]
+    game = Game.new(display, @board, players)
     game.play
     expect(@output.string).to include("draw")
   end
