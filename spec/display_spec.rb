@@ -24,11 +24,4 @@ describe Display do
     display = Display.new(console, @message)
     expect(display.valid_play_again_response).to eql("n")
   end
-
-  it "validates cell choice input" do
-    input = StringIO.new("hello\n33\n3")
-    console = Console.new(@output, input)
-    display = Display.new(console, @message)
-    expect(display.valid_cell_choice(@board)).to eql(3)
-  end
 end

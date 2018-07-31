@@ -34,17 +34,6 @@ class Display
     @console.present(@message.prompt_for_cell)
   end
 
-  def valid_cell_choice(board)
-    response = receive_integer
-    valid_options = board.grid.reject{|cell| cell.to_s[/[^1-9]/] }
-    if !valid_options.include?(response)
-      choose_cell
-      valid_cell_choice(board)
-    else
-      response
-    end
-  end
-
   def valid_play_again_response
     response = receive_lower_case_character.downcase
     valid_options = ["y", "n"]
@@ -72,13 +61,13 @@ class Display
     @console.present(@message.replay)
   end
 
+  def receive_integer
+    @console.receive.to_i
+  end
+
   private
 
   def receive_lower_case_character
     @console.receive
-  end
-
-  def receive_integer
-    @console.receive.to_i
   end
 end

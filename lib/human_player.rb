@@ -1,8 +1,9 @@
-class ComputerPlayer < Player
-
+class HumanPlayer < Player
+  
   def get_cell
-    choice = @board.create_grid.sample
+    choice = @display.receive_integer
     if !@board.valid_cell?(choice)
+      @display.choose_cell
       get_cell
     else
       choice

@@ -3,10 +3,9 @@ class Game
   PLAYER_ONE_MARK = "X"
   PLAYER_TWO_MARK = "O"
 
-  def initialize(display, board, player)
+  def initialize(display, board)
     @display = display
     @board = board
-    @player = player
   end
 
   def play
@@ -31,7 +30,8 @@ class Game
     current_player = Peg::PLAYER_ONE_MARK
     opponent = Peg::PLAYER_TWO_MARK
     until @board.end_of_game?
-      @player.turn(@display, @board, current_player)
+      human_player = HumanPlayer.new(@board, @display)
+      human_player.turn(current_player)
       current_player, opponent = opponent, current_player
     end
   end
