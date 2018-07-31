@@ -48,8 +48,10 @@ class Game
 
   def play_again
     @display.play_again
-    until @display.valid_play_again_response
-      play
+    choice = @display.valid_play_again_response
+    if choice == "y"
+      game = Game.new(Display.new(Message.new), Board.new(3), Player.new)
+      game.play
     end
   end
 end
