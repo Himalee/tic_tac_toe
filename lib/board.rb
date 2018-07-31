@@ -50,11 +50,11 @@ class Board
     end
   end
 
-  private
-
   def max_number_of_cells
     @dimension ** NUMBER_TWO
   end
+
+  private
 
   def index_position(cell_number)
     cell_number - NUMBER_ONE

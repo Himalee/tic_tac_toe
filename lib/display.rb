@@ -9,11 +9,18 @@ class Display
     grid = board.grid
     presentable_board = ""
     grid.each_with_index { |cell, index|
-      presentable_board << "[#{cell}] "
-    if (index + 1) % board.dimension == 0
-      presentable_board << "\n"
+    if (index + 1) == board.max_number_of_cells
+      presentable_board << " #{cell}"
+    elsif (index + 1) % board.dimension == 0
+      presentable_board << " #{cell} #{insert_line}"
+    else
+      presentable_board << " #{cell} │"
     end }
     @console.present(presentable_board)
+  end
+
+  def insert_line
+    "\n───┼───┼───\n"
   end
 
   def welcome

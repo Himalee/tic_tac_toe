@@ -18,7 +18,7 @@ describe Game do
     display = Display.new(console, @message)
     game = Game.new(display, @board, @player)
     game.play
-    expect(@output.string).to include("[X] [X] [X] \n[O] [O] [6] \n[7] [8] [9] \n")
+    expect(@output.string).to include(" X │ X │ X \n───┼───┼───\n O │ O │ 6 \n───┼───┼───\n 7 │ 8 │ 9\n")
   end
 
   it "returns win with invalid choices" do

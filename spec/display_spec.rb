@@ -15,7 +15,7 @@ describe Display do
     console = Console.new(@output)
     display = Display.new(console, @message)
     display.present_board_with_squares(@board)
-    expect(@output.string).to eql("[1] [2] [3] \n[4] [5] [6] \n[7] [8] [9] \n")
+    expect(@output.string).to eql(" 1 │ 2 │ 3 \n───┼───┼───\n 4 │ 5 │ 6 \n───┼───┼───\n 7 │ 8 │ 9\n")
   end
 
   it "validates input to play again" do
