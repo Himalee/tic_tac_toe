@@ -1,6 +1,10 @@
 require "game"
 require "player"
 require "peg"
+require "board"
+require "message"
+require "console"
+require "display"
 
 describe Game do
 

@@ -12,15 +12,18 @@ class Display
     if (index + 1) == board.max_number_of_cells
       presentable_board << " #{cell}"
     elsif (index + 1) % board.dimension == 0
-      presentable_board << " #{cell} #{insert_line}"
+      presentable_board << " #{cell} #{insert_line(board)}"
+    elsif (index + 1) > 9
+      presentable_board << "#{cell} │"
     else
       presentable_board << " #{cell} │"
     end }
     @console.present(presentable_board)
   end
 
-  def insert_line
-    "\n───┼───┼───\n"
+  def insert_line(board)
+    line = "───┼" * (board.dimension - 1)
+    "\n#{line}───\n"
   end
 
   def welcome
