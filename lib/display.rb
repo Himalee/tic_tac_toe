@@ -65,6 +65,10 @@ class Display
     @console.receive.to_i
   end
 
+  def choose_game_mode
+    @console.present(@message.game_mode)
+  end
+
   private
 
   def receive_lower_case_character

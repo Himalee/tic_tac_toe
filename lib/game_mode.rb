@@ -1,10 +1,11 @@
 class GameMode
 
-  def set_up_game(choice, board, display)
-    if choice == 1
-      [HumanPlayer.new(board, display), HumanPlayer.new(board, display)]
-    elsif choice == 2
-      [HumanPlayer.new(board, display), ComputerPlayer.new(board, display)]
-    end
+  def initialize(display)
+    @display = display
+  end
+
+  def choose_game_mode
+    @display.choose_game_mode
+    @display.receive_integer
   end
 end

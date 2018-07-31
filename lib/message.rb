@@ -21,6 +21,10 @@ class Message
   end
 
   def replay
-    "Replay game? Type 'y' to reply or 'n' to end"
+    "Replay game? Type 'y' to replay or 'n' to end"
+  end
+
+  def game_mode
+    "Would you like to play against:\n1. Human Player or\n2. Computer Player"
   end
 end
