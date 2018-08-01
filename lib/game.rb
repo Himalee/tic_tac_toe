@@ -14,6 +14,7 @@ class Game
     present_board
     turns
     present_result
+    play_again
   end
 
   private
@@ -27,8 +28,8 @@ class Game
   end
 
   def turns
-    current_player = Peg::PLAYER_ONE_MARK
-    opponent = Peg::PLAYER_TWO_MARK
+    current_player = Mark::PLAYER_ONE_MARK
+    opponent = Mark::PLAYER_TWO_MARK
     until @board.end_of_game?
       @player.turn(@display, @board, current_player)
       current_player, opponent = opponent, current_player
@@ -36,12 +37,21 @@ class Game
   end
 
   def present_result
-    if @board.winning_mark == Peg::PLAYER_ONE_MARK
+    if @board.winning_mark == Mark::PLAYER_ONE_MARK
       @display.player_one_wins
-    elsif @board.winning_mark == Peg::PLAYER_TWO_MARK
+    elsif @board.winning_mark == Mark::PLAYER_TWO_MARK
       @display.player_two_wins
     else
       @display.draw
+    end
+  end
+
+  def play_again
+    @display.play_again
+    choice = @display.valid_play_again_response
+    if choice == "y"
+      game = Game.new(Display.new(Message.new), Board.new(3), Player.new)
+      game.play
     end
   end
 end

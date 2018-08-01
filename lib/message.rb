@@ -1,5 +1,5 @@
 class Message
-  
+
   def welcome
     "Welcome to Tic Tac Toe\nPlayer one = X\nPlayer two = O"
   end
@@ -18,5 +18,9 @@ class Message
 
   def draw
     "It's a draw"
+  end
+
+  def replay
+    "Replay game? Type 'y' to reply or 'n' to end"
   end
 end
