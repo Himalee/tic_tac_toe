@@ -14,7 +14,6 @@ class Game
     present_board
     turns
     present_result
-    play_again
   end
 
   private
@@ -43,15 +42,6 @@ class Game
       @display.player_two_wins
     else
       @display.draw
-    end
-  end
-
-  def play_again
-    @display.play_again
-    choice = @display.valid_play_again_response
-    if choice == "y"
-      game = Game.new(Display.new(Message.new), Board.new(3))
-      game.play
     end
   end
 end
