@@ -78,7 +78,7 @@ class Board
   end
 
   def draw?
-    !win? && @grid.all? { |i| i == Peg::PLAYER_ONE_MARK || i == Peg::PLAYER_TWO_MARK }
+    !win? && @grid.all? { |i| i == Mark::PLAYER_ONE_MARK || i == Mark::PLAYER_TWO_MARK }
   end
 
   def all_winning_combinations

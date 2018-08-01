@@ -1,6 +1,6 @@
 require "game"
 require "player"
-require "peg"
+require "mark"
 require "board"
 require "message"
 require "console"
