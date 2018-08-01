@@ -11,6 +11,8 @@ class Session
     replay
   end
 
+  private
+
   def replay
     @display.play_again
     choice = @display.valid_play_again_response
