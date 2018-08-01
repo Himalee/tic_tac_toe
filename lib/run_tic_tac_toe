@@ -6,14 +6,12 @@ require_relative "game"
 require_relative "message"
 require_relative "player"
 require_relative "human_player"
+require_relative "computer_player"
 require_relative "peg"
 require_relative "game_factory"
 require_relative "player_factory"
 require_relative "game_mode"
 require_relative "session"
-
-# game = Game.new(Display.new(Message.new), Board.new(3))
-# game.play
 
 board = Board.new(3)
 display = Display.new(Message.new)
