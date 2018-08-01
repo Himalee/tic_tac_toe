@@ -25,6 +25,6 @@ class Message
   end
 
   def game_mode
-    "Would you like to play against:\n1. Human Player or\n2. Computer Player"
+    "Would you like to play against:\n1. Human vs Human\n2. Human vs Computer\n3. Computer vs Human"
   end
 end
