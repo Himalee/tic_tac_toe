@@ -44,6 +44,16 @@ class Display
     choice
   end
 
+  def valid_game_mode_response
+    response = receive_integer
+    valid_options = [1, 2, 3]
+    until valid_options.include?(response)
+      choose_game_mode
+      response = receive_integer
+    end
+    response
+  end
+
   def valid_play_again_response
     response = receive_lower_case_character.downcase
     valid_options = ["y", "n"]

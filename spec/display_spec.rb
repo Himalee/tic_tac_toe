@@ -25,4 +25,11 @@ describe Display do
     display = Display.new(console, @message, @validator)
     expect(display.valid_play_again_response).to eql("n")
   end
+
+  it "validates game mode input" do
+    input = StringIO.new("d\n5\n12\n1")
+    console = Console.new(@output, input)
+    display = Display.new(console, @message, @validator)
+    expect(display.valid_game_mode_response).to eql(1)
+  end
 end
