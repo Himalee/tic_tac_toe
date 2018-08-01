@@ -37,12 +37,11 @@ class Display
   def valid_play_again_response
     response = receive_lower_case_character.downcase
     valid_options = ["y", "n"]
-    if !valid_options.include?(response)
+    until valid_options.include?(response)
       play_again
-      valid_play_again_response
-    else
-      response
+      response = receive_lower_case_character.downcase
     end
+    response
   end
 
   def player_one_wins
