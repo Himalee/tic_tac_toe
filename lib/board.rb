@@ -54,10 +54,10 @@ class Board
     @dimension ** NUMBER_TWO
   end
 
-  def valid_cell?(choice)
-    valid_options = @grid.reject{|cell| cell.to_s[/[^1-9]/] }
-    valid_options.include?(choice)
-  end
+  # def valid_cell?(choice)
+  #   valid_options = @grid.reject{|cell| cell.to_s[/[^1-9]/] }
+  #   valid_options.include?(choice)
+  # end
 
   private
 

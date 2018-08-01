@@ -14,12 +14,13 @@ describe Game do
     @board = Board.new(dimension)
     @output = StringIO.new
     @message = Message.new
+    @validator = MoveValidator.new(@board)
   end
 
   it "returns marked board given numbers from console" do
     input = StringIO.new("1\n4\n2\n5\n3")
     console = Console.new(@output, input)
-    display = Display.new(console, @message)
+    display = Display.new(console, @message, @validator)
     players = [HumanPlayer.new(@board, display, Peg::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Peg::PLAYER_TWO_MARK)]
     game = Game.new(display, @board, players)
     game.play
@@ -29,7 +30,7 @@ describe Game do
   it "returns win with invalid choices" do
     input = StringIO.new("1\n1\n4\nhello\n2\n5\n7\n6")
     console = Console.new(@output, input)
-    display = Display.new(console, @message)
+    display = Display.new(console, @message, @validator)
     players = [HumanPlayer.new(@board, display, Peg::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Peg::PLAYER_TWO_MARK)]
     game = Game.new(display, @board, players)
     game.play
@@ -39,7 +40,7 @@ describe Game do
   it "returns draw" do
     input = StringIO.new("1\n2\n3\n4\n6\n9\n7\n5\n8")
     console = Console.new(@output, input)
-    display = Display.new(console, @message)
+    display = Display.new(console, @message, @validator)
     players = [HumanPlayer.new(@board, display, Peg::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Peg::PLAYER_TWO_MARK)]
     game = Game.new(display, @board, players)
     game.play

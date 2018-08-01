@@ -1,10 +1,7 @@
 class ComputerPlayer < Player
 
   def get_cell
-   choice = @board.create_grid.sample
-   until @board.valid_cell?(choice)
-     choice = @board.create_grid.sample
-   end
-   choice
+    valid_options = @board.grid.reject { |cell| cell.to_s[/[^1-9]/] }
+    valid_options.sample
  end
 end

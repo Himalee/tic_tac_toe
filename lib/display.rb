@@ -1,8 +1,9 @@
 class Display
 
-  def initialize(console = Console.new, message)
+  def initialize(console = Console.new, message, validator)
     @console = console
     @message = message
+    @validator = validator
   end
 
   def present_board_with_squares(board)
@@ -32,6 +33,15 @@ class Display
 
   def choose_cell
     @console.present(@message.prompt_for_cell)
+  end
+
+  def get_valid_cell
+    choice = receive_integer
+    until @validator.valid_cell?(choice)
+      choose_cell
+      choice = receive_integer
+    end
+    choice
   end
 
   def valid_play_again_response

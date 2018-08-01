@@ -12,9 +12,11 @@ require_relative "game_factory"
 require_relative "player_factory"
 require_relative "game_mode"
 require_relative "session"
+require_relative "move_validator"
 
 board = Board.new(3)
-display = Display.new(Message.new)
+validator = MoveValidator.new(board)
+display = Display.new(Message.new, validator)
 game_factory = GameFactory.new(PlayerFactory.new, GameMode.new(display), display, board)
 session = Session.new(game_factory, display)
 session.start

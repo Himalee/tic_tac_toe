@@ -5,8 +5,9 @@ describe ComputerPlayer do
 
   before :each do
     @board = Board.new(3)
+    validator = MoveValidator.new(@board)
     message = Message.new
-    display = Display.new(message)
+    display = Display.new(message, validator)
     @computer_player = ComputerPlayer.new(@board, display, "")
   end
 
