@@ -7,9 +7,8 @@ class Display
   end
 
   def present_board_with_squares(board)
-    grid = board.grid
     presentable_board = ""
-    grid.each_with_index { |cell, index|
+    board.grid.each_with_index { |cell, index|
     if (index + 1) == board.max_number_of_cells
       presentable_board << " #{cell}"
     elsif (index + 1) % board.dimension == 0

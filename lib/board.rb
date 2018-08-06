@@ -19,33 +19,38 @@ class Board
     @grid[index_position(cell_number)] = mark
   end
 
-  def possible_rows
-    @grid.each_slice(@dimension).to_a
+  def new_board(grid, cell_number, mark)
+    grid[index_position(cell_number)] = mark
+    grid
   end
 
-  def possible_columns
-    possible_rows.transpose
+  def possible_rows(grid)
+    grid.each_slice(@dimension).to_a
   end
 
-  def possible_diagonals
+  def possible_columns(grid)
+    possible_rows(grid).transpose
+  end
+
+  def possible_diagonals(grid)
     diagonals = []
     position = FIRST_ELEMENT
-    diagonals << add_diagonal(position, :+)
-    diagonals << add_diagonal(position + @dimension - NUMBER_ONE, :-)
+    diagonals << add_diagonal(grid, position, :+)
+    diagonals << add_diagonal(grid, position + @dimension - NUMBER_ONE, :-)
     diagonals
   end
 
-  def end_of_game?
-    win? || draw?
+  def end_of_game?(grid)
+    win?(grid) || draw?(grid)
   end
 
-  def win?
-    all_winning_combinations.any? { |line| includes_identical_elements?(line)}
+  def win?(grid)
+    all_winning_combinations(grid).any? { |line| includes_identical_elements?(line)}
   end
 
-  def winning_mark
-    if win?
-      winning_line = all_winning_combinations.find { |line| includes_identical_elements?(line)}
+  def winning_mark(grid)
+    if win?(grid)
+      winning_line = all_winning_combinations(grid).find { |line| includes_identical_elements?(line)}
       winning_line[FIRST_ELEMENT]
     end
   end
@@ -60,10 +65,10 @@ class Board
     cell_number - NUMBER_ONE
   end
 
-  def add_diagonal(position, operation)
+  def add_diagonal(grid, position, operation)
     cells = []
     until cells.count == @dimension
-      cells << @grid[position]
+      cells << grid[position]
       position += calculation(@dimension, NUMBER_ONE, operation)
     end
     cells
@@ -77,15 +82,15 @@ class Board
     @dimension * NUMBER_TWO + NUMBER_TWO
   end
 
-  def draw?
-    !win? && @grid.all? { |i| i == Peg::PLAYER_ONE_MARK || i == Peg::PLAYER_TWO_MARK }
+  def draw?(grid)
+    !win?(grid) && grid.all? { |i| i == Peg::PLAYER_ONE_MARK || i == Peg::PLAYER_TWO_MARK }
   end
 
-  def all_winning_combinations
+  def all_winning_combinations(grid)
     combinations = []
-    combinations << possible_rows
-    combinations << possible_columns
-    combinations << possible_diagonals
+    combinations << possible_rows(grid)
+    combinations << possible_columns(grid)
+    combinations << possible_diagonals(grid)
     combinations.flatten(NUMBER_ONE)
   end
 

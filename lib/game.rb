@@ -19,16 +19,16 @@ class Game
   def turns
     current_player = @players[0]
     opponent = @players[1]
-    until @board.end_of_game?
+    until @board.end_of_game?(@board.grid)
       current_player.turn
       current_player, opponent = opponent, current_player
     end
   end
 
   def present_result
-    if @board.winning_mark == Peg::PLAYER_ONE_MARK
+    if @board.winning_mark(@board.grid) == Peg::PLAYER_ONE_MARK
       @display.player_one_wins
-    elsif @board.winning_mark == Peg::PLAYER_TWO_MARK
+    elsif @board.winning_mark(@board.grid) == Peg::PLAYER_TWO_MARK
       @display.player_two_wins
     else
       @display.draw

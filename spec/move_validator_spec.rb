@@ -6,6 +6,7 @@ describe MoveValidator do
     @board = Board.new(3)
     @validator = MoveValidator.new(@board)
   end
+
   it "returns true given valid choice" do
     expect(@validator.valid_cell?(1)).to be true
   end
