@@ -55,11 +55,11 @@ class Display
   end
 
   def valid_play_again_response
-    response = receive_lower_case_character.downcase
+    response = receive_lower_case_character
     valid_options = ["y", "n"]
     until valid_options.include?(response)
       play_again
-      response = receive_lower_case_character.downcase
+      response = receive_lower_case_character
     end
     response
   end
@@ -91,6 +91,6 @@ class Display
   private
 
   def receive_lower_case_character
-    @console.receive
+    @console.receive.downcase
   end
 end
