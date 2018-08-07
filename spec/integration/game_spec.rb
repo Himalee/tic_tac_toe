@@ -62,7 +62,7 @@ describe Game do
       input = StringIO.new("2")
       console = Console.new(@output, input)
       display = Display.new(console, @message, @validator)
-      players = [ComputerPlayer.new(@board, display, Peg::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Peg::PLAYER_TWO_MARK)]
+      players = [ComputerPlayerRandom.new(@board, display, Peg::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Peg::PLAYER_TWO_MARK)]
       game = Game.new(display, @board, players)
       game.play
       expect(@output.string).to include("Player one wins")

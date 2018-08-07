@@ -19,12 +19,12 @@ describe PlayerFactory do
   it "returns a human player and a computer player" do
     choice = 2
     expect(@player_factory.set_up_players(choice, @board, @display)[0]).to be_a(HumanPlayer)
-    expect(@player_factory.set_up_players(choice, @board, @display)[1]).to be_a(ComputerPlayer)
+    expect(@player_factory.set_up_players(choice, @board, @display)[1]).to be_a(ComputerPlayerRandom)
   end
 
   it "returns a computer player and a human player" do
     choice = 3
-    expect(@player_factory.set_up_players(choice, @board, @display)[0]).to be_a(ComputerPlayer)
+    expect(@player_factory.set_up_players(choice, @board, @display)[0]).to be_a(ComputerPlayerRandom)
     expect(@player_factory.set_up_players(choice, @board, @display)[1]).to be_a(HumanPlayer)
   end
 end

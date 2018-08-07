@@ -45,7 +45,7 @@ class Display
 
   def valid_game_mode_response
     response = receive_integer
-    valid_options = [1, 2, 3]
+    valid_options = [1, 2, 3, 4, 5]
     until valid_options.include?(response)
       choose_game_mode
       response = receive_integer
