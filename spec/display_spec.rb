@@ -9,11 +9,12 @@ describe Display do
     @board = Board.new(3)
     @output = StringIO.new
     @message = Message.new
+    @validator = MoveValidator.new(@board)
   end
 
   it "presents 3x3 board" do
     console = Console.new(@output)
-    display = Display.new(console, @message)
+    display = Display.new(console, @message, @validator)
     display.present_board_with_squares(@board)
     expect(@output.string).to eql(" 1 │ 2 │ 3 \n───┼───┼───\n 4 │ 5 │ 6 \n───┼───┼───\n 7 │ 8 │ 9\n")
   end
@@ -21,14 +22,14 @@ describe Display do
   it "validates input to play again" do
     input = StringIO.new("d\n3\nno\nN")
     console = Console.new(@output, input)
-    display = Display.new(console, @message)
+    display = Display.new(console, @message, @validator)
     expect(display.valid_play_again_response).to eql("n")
   end
 
-  it "validates cell choice input" do
-    input = StringIO.new("hello\n33\n3")
+  it "validates game mode input" do
+    input = StringIO.new("d\n5\n12\n1")
     console = Console.new(@output, input)
-    display = Display.new(console, @message)
-    expect(display.valid_cell_choice(@board)).to eql(3)
+    display = Display.new(console, @message, @validator)
+    expect(display.valid_game_mode_response).to eql(1)
   end
 end

@@ -1,12 +1,9 @@
 class Game
 
-  PLAYER_ONE_MARK = "X"
-  PLAYER_TWO_MARK = "O"
-
-  def initialize(display, board, player)
+  def initialize(display, board, players)
     @display = display
     @board = board
-    @player = player
+    @players = players
   end
 
   def play
@@ -14,7 +11,6 @@ class Game
     present_board
     turns
     present_result
-    play_again
   end
 
   private
@@ -28,10 +24,13 @@ class Game
   end
 
   def turns
-    current_player = Mark::PLAYER_ONE_MARK
-    opponent = Mark::PLAYER_TWO_MARK
+    current_player = @players[0]
+    opponent = @players[1]
     until @board.end_of_game?
-      @player.turn(@display, @board, current_player)
+      @display.choose_cell
+      number = current_player.get_cell
+      @board.mark_board(number, current_player.mark)
+      @display.present_board_with_squares(@board)
       current_player, opponent = opponent, current_player
     end
   end
@@ -43,15 +42,6 @@ class Game
       @display.player_two_wins
     else
       @display.draw
-    end
-  end
-
-  def play_again
-    @display.play_again
-    choice = @display.valid_play_again_response
-    if choice == "y"
-      game = Game.new(Display.new(Message.new), Board.new(3), Player.new)
-      game.play
     end
   end
 end

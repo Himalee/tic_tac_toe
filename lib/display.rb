@@ -1,8 +1,9 @@
 class Display
 
-  def initialize(console = Console.new, message)
+  def initialize(console = Console.new, message, validator)
     @console = console
     @message = message
+    @validator = validator
   end
 
   def present_board_with_squares(board)
@@ -34,26 +35,33 @@ class Display
     @console.present(@message.prompt_for_cell)
   end
 
-  def valid_cell_choice(board)
-    response = receive_integer
-    valid_options = board.grid.reject{|cell| cell.to_s[/[^1-9]/] }
-    if !valid_options.include?(response)
+  def get_valid_cell
+    choice = receive_integer
+    until @validator.valid_cell?(choice)
       choose_cell
-      valid_cell_choice(board)
-    else
-      response
+      choice = receive_integer
     end
+    choice
+  end
+
+  def valid_game_mode_response
+    response = receive_integer
+    valid_options = [1, 2, 3]
+    until valid_options.include?(response)
+      choose_game_mode
+      response = receive_integer
+    end
+    response
   end
 
   def valid_play_again_response
-    response = receive_lower_case_character.downcase
+    response = receive_lower_case_character
     valid_options = ["y", "n"]
-    if !valid_options.include?(response)
+    until valid_options.include?(response)
       play_again
-      valid_play_again_response
-    else
-      response
+      response = receive_lower_case_character
     end
+    response
   end
 
   def player_one_wins
@@ -72,13 +80,17 @@ class Display
     @console.present(@message.replay)
   end
 
+  def receive_integer
+    @console.receive.to_i
+  end
+
+  def choose_game_mode
+    @console.present(@message.game_mode)
+  end
+
   private
 
   def receive_lower_case_character
-    @console.receive
-  end
-
-  def receive_integer
-    @console.receive.to_i
+    @console.receive.downcase
   end
 end
