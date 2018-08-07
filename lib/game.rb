@@ -1,8 +1,5 @@
 class Game
 
-  PLAYER_ONE_MARK = "X"
-  PLAYER_TWO_MARK = "O"
-
   def initialize(display, board, players)
     @display = display
     @board = board
@@ -39,9 +36,9 @@ class Game
   end
 
   def present_result
-    if @board.winning_mark == Peg::PLAYER_ONE_MARK
+    if @board.winning_mark == Mark::PLAYER_ONE_MARK
       @display.player_one_wins
-    elsif @board.winning_mark == Peg::PLAYER_TWO_MARK
+    elsif @board.winning_mark == Mark::PLAYER_TWO_MARK
       @display.player_two_wins
     else
       @display.draw
