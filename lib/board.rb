@@ -59,6 +59,10 @@ class Board
     @dimension ** NUMBER_TWO
   end
 
+  def draw?(grid)
+    !win?(grid) && grid.all? { |i| i == Mark::PLAYER_ONE_MARK || i == Mark::PLAYER_TWO_MARK }
+  end
+
   private
 
   def index_position(cell_number)
@@ -80,10 +84,6 @@ class Board
 
   def number_of_possible_combinations
     @dimension * NUMBER_TWO + NUMBER_TWO
-  end
-
-  def draw?(grid)
-    !win?(grid) && grid.all? { |i| i == Peg::PLAYER_ONE_MARK || i == Peg::PLAYER_TWO_MARK }
   end
 
   def all_winning_combinations(grid)

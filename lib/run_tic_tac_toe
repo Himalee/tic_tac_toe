@@ -8,12 +8,13 @@ require_relative "player"
 require_relative "human_player"
 require_relative "computer_player_random"
 require_relative "min_max"
-require_relative "peg"
+require_relative "mark"
 require_relative "game_factory"
 require_relative "player_factory"
 require_relative "game_mode"
 require_relative "session"
 require_relative "move_validator"
+require_relative "computer_player_min_max"
 
 board = Board.new(3)
 validator = MoveValidator.new(board)
