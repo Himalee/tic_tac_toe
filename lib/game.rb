@@ -10,11 +10,21 @@ class Game
   end
 
   def play
+    welcome_players
+    present_board
     turns
     present_result
   end
 
   private
+
+  def welcome_players
+    @display.welcome
+  end
+
+  def present_board
+    @display.present_board_with_squares(@board)
+  end
 
   def turns
     current_player = @players[0]
