@@ -30,7 +30,10 @@ class Game
     current_player = @players[0]
     opponent = @players[1]
     until @board.end_of_game?
-      current_player.turn
+      @display.choose_cell
+      number = current_player.get_cell
+      @board.mark_board(number, current_player.mark)
+      @display.present_board_with_squares(@board)
       current_player, opponent = opponent, current_player
     end
   end
