@@ -40,12 +40,12 @@ class Board
   end
 
   def win?
-    all_winning_combinations.any? { |line| includes_identical_elements?(line)}
+    all_lines.any? { |line| includes_identical_elements?(line)}
   end
 
   def winning_mark
     if win?
-      winning_line = all_winning_combinations.find { |line| includes_identical_elements?(line)}
+      winning_line = all_lines.find { |line| includes_identical_elements?(line)}
       winning_line[FIRST_ELEMENT]
     end
   end
@@ -81,7 +81,7 @@ class Board
     !win? && @grid.all? { |i| i == Mark::PLAYER_ONE_MARK || i == Mark::PLAYER_TWO_MARK }
   end
 
-  def all_winning_combinations
+  def all_lines
     combinations = []
     combinations << possible_rows
     combinations << possible_columns
