@@ -13,14 +13,6 @@ class Game
     present_result
   end
 
-  def current_player
-    @players[FIRST_ELEMENT]
-  end
-
-  def next_player
-    @players.rotate!
-  end
-
   private
 
   def turns
@@ -31,6 +23,14 @@ class Game
       @display.present_board_with_squares(@board)
       next_player
     end
+  end
+
+  def current_player
+    @players[FIRST_ELEMENT]
+  end
+
+  def next_player
+    @players.rotate!
   end
 
   def present_result
