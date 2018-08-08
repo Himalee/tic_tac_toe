@@ -1,4 +1,4 @@
-class MinMax
+class Negamax
 
   def initialize(board)
     @board = board

@@ -8,11 +8,11 @@ class PlayerFactory
     elsif choice == 3
       [ComputerPlayerRandom.new(board, display, Mark::PLAYER_ONE_MARK), HumanPlayer.new(board, display, Mark::PLAYER_TWO_MARK)]
     elsif choice == 4
-      [HumanPlayer.new(board, display, Mark::PLAYER_ONE_MARK), ComputerPlayerMinMax.new(board, display, Mark::PLAYER_TWO_MARK)]
+      [HumanPlayer.new(board, display, Mark::PLAYER_ONE_MARK), ComputerPlayerAI.new(board, display, Mark::PLAYER_TWO_MARK)]
     elsif choice == 5
-      [ComputerPlayerMinMax.new(board, display, Mark::PLAYER_ONE_MARK), HumanPlayer.new(board, display, Mark::PLAYER_TWO_MARK)]
+      [ComputerPlayerAI.new(board, display, Mark::PLAYER_ONE_MARK), HumanPlayer.new(board, display, Mark::PLAYER_TWO_MARK)]
     elsif choice == 6
-      [ComputerPlayerMinMax.new(board, display, Mark::PLAYER_ONE_MARK), ComputerPlayerMinMax.new(board, display, Mark::PLAYER_TWO_MARK)]
+      [ComputerPlayerAI.new(board, display, Mark::PLAYER_ONE_MARK), ComputerPlayerAI.new(board, display, Mark::PLAYER_TWO_MARK)]
     end
   end
 end

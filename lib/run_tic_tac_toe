@@ -7,14 +7,14 @@ require_relative "message"
 require_relative "player"
 require_relative "human_player"
 require_relative "computer_player_random"
-require_relative "min_max"
+require_relative "negamax"
 require_relative "mark"
 require_relative "game_factory"
 require_relative "player_factory"
 require_relative "game_mode"
 require_relative "session"
 require_relative "validator"
-require_relative "computer_player_min_max"
+require_relative "computer_player_ai"
 
 board = Board.new(3)
 validator = Validator.new(board)
