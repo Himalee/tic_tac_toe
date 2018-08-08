@@ -14,7 +14,7 @@ describe Game do
     @board = Board.new(dimension)
     @output = StringIO.new
     @message = Message.new
-    @validator = MoveValidator.new(@board)
+    @validator = Validator.new(@board)
   end
 
   context "human vs human game" do

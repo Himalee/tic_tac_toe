@@ -10,7 +10,7 @@ describe HumanPlayer do
     @board = Board.new(3)
     @output = StringIO.new
     @message = Message.new
-    @validator = MoveValidator.new(@board)
+    @validator = Validator.new(@board)
   end
 
   it "validates cell choice input" do

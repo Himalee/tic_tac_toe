@@ -1,7 +1,7 @@
 require "player"
 require "computer_player_random"
 require "board"
-require "move_validator"
+require "validator"
 require "message"
 require "display"
 require "console"
@@ -10,7 +10,7 @@ describe ComputerPlayerRandom do
 
   before :each do
     @board = Board.new(3)
-    validator = MoveValidator.new(@board)
+    validator = Validator.new(@board)
     message = Message.new
     display = Display.new(message, validator)
     @computer_player = ComputerPlayerRandom.new(@board, display, "")

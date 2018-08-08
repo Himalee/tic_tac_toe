@@ -36,7 +36,7 @@ class Display
 
   def get_valid_cell
     choice = receive_integer
-    until @validator.valid_cell?(choice)
+    until @validator.cell?(choice)
       choose_cell
       choice = receive_integer
     end
@@ -44,23 +44,21 @@ class Display
   end
 
   def valid_game_mode_response
-    response = receive_integer
-    valid_options = [1, 2, 3, 4, 5, 6]
-    until valid_options.include?(response)
+    choice = receive_integer
+    until @validator.game_mode?(choice)
       choose_game_mode
-      response = receive_integer
+      choice = receive_integer
     end
-    response
+    choice
   end
 
   def valid_play_again_response
-    response = receive_lower_case_character.downcase
-    valid_options = ["y", "n"]
-    until valid_options.include?(response)
+    choice = receive_lower_case_character
+    until @validator.play_again?(choice)
       play_again
-      response = receive_lower_case_character.downcase
+      choice = receive_lower_case_character
     end
-    response
+    choice
   end
 
   def player_one_wins
@@ -90,6 +88,6 @@ class Display
   private
 
   def receive_lower_case_character
-    @console.receive
+    @console.receive.downcase
   end
 end

@@ -9,7 +9,7 @@ describe Display do
     @board = Board.new(3)
     @output = StringIO.new
     @message = Message.new
-    @validator = MoveValidator.new(@board)
+    @validator = Validator.new(@board)
   end
 
   it "presents 3x3 board" do

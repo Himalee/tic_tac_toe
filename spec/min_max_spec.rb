@@ -1,6 +1,6 @@
 require "player"
 require "min_max"
-require "move_validator"
+require "validator"
 require "game"
 require "board"
 require "human_player"
