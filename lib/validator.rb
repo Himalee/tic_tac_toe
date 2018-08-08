@@ -8,8 +8,7 @@ class Validator
   end
 
   def cell?(choice)
-    valid_options = @board.grid.reject { |cell| cell.to_s[/[^1-9]/] }
-    valid_options.include?(choice)
+    @board.available_positions(@board.grid).include?(choice)
   end
 
   def game_mode?(choice)

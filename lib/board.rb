@@ -61,6 +61,10 @@ class Board
     !win?(grid) && grid.all? { |i| i == Mark::PLAYER_ONE_MARK || i == Mark::PLAYER_TWO_MARK }
   end
 
+  def available_positions(grid)
+    grid.reject { |cell| cell.to_s[/[^1-9]/] }
+  end
+
   private
 
   def index_position(cell_number)

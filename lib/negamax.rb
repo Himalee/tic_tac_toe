@@ -7,7 +7,7 @@ class Negamax
   def get_best_move(grid, depth=0, best_score={}, mark)
     return 0 if @board.draw?(grid)
     return -1 if @board.win?(grid)
-    available_positions(grid).each do |cell|
+    @board.available_positions(grid).each do |cell|
       possible_grid = grid.dup
       other_grid = @board.new_board(possible_grid, cell, mark)
       best_score[cell] = -1 * get_best_move(other_grid, depth + 1, {}, opponent_mark(mark))
@@ -27,9 +27,5 @@ class Negamax
     else
       "X"
     end
-  end
-
-  def available_positions(grid)
-    grid.reject { |cell| cell.to_s[/[^1-9]/] }
   end
 end
