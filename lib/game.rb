@@ -1,5 +1,7 @@
 class Game
 
+  FIRST_ELEMENT = 0
+
   def initialize(display, board, players)
     @display = display
     @board = board
@@ -12,7 +14,7 @@ class Game
   end
 
   def current_player
-    @players[0]
+    @players[FIRST_ELEMENT]
   end
 
   def next_player

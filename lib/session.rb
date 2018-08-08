@@ -1,5 +1,7 @@
 class Session
 
+  REPLAY_CHOICE = "y"
+
   def initialize(game_factory, display)
     @game_factory = game_factory
     @display = display
@@ -16,7 +18,7 @@ class Session
   def replay
     @display.play_again
     choice = @display.valid_play_again_response
-    if choice == "y"
+    if choice == REPLAY_CHOICE
       start
     end
   end
