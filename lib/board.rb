@@ -3,8 +3,6 @@ class Board
   attr_reader :dimension, :grid
 
   FIRST_ELEMENT = 0
-  NUMBER_ONE = 1
-  NUMBER_TWO = 2
 
   def initialize(size)
     @dimension = size
@@ -12,7 +10,7 @@ class Board
   end
 
   def create_grid
-    (NUMBER_ONE..(max_number_of_cells)).to_a
+    (1..(max_number_of_cells)).to_a
   end
 
   def mark_board(cell_number, mark)
@@ -36,7 +34,7 @@ class Board
     diagonals = []
     position = FIRST_ELEMENT
     diagonals << add_diagonal(grid, position, :+)
-    diagonals << add_diagonal(grid, position + @dimension - NUMBER_ONE, :-)
+    diagonals << add_diagonal(grid, position + @dimension - 1, :-)
     diagonals
   end
 
@@ -56,7 +54,7 @@ class Board
   end
 
   def max_number_of_cells
-    @dimension ** NUMBER_TWO
+    @dimension ** 2
   end
 
   def draw?(grid)
@@ -66,14 +64,14 @@ class Board
   private
 
   def index_position(cell_number)
-    cell_number - NUMBER_ONE
+    cell_number - 1
   end
 
   def add_diagonal(grid, position, operation)
     cells = []
     until cells.count == @dimension
       cells << grid[position]
-      position += calculation(@dimension, NUMBER_ONE, operation)
+      position += calculation(@dimension, 1, operation)
     end
     cells
   end
@@ -82,16 +80,12 @@ class Board
     a.send(operation, b)
   end
 
-  def number_of_possible_combinations
-    @dimension * NUMBER_TWO + NUMBER_TWO
-  end
-
   def all_winning_combinations(grid)
     combinations = []
     combinations << possible_rows(grid)
     combinations << possible_columns(grid)
     combinations << possible_diagonals(grid)
-    combinations.flatten(NUMBER_ONE)
+    combinations.flatten(1)
   end
 
   def includes_identical_elements?(line)
