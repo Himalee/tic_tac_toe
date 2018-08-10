@@ -9,7 +9,7 @@ describe Session do
     output = StringIO.new
     input = StringIO.new("1\n1\n2\n3\n4\n6\n9\n7\n5\n8\nn")
     console = Console.new(output, input)
-    validator = MoveValidator.new(board)
+    validator = Validator.new(board)
     display = Display.new(console, message, validator)
     game_mode = GameMode.new(display)
     player_factory = PlayerFactory.new

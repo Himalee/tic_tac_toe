@@ -14,7 +14,7 @@ describe Game do
     @board = Board.new(dimension)
     @output = StringIO.new
     @message = Message.new
-    @validator = MoveValidator.new(@board)
+    @validator = Validator.new(@board)
   end
 
   context "human vs human game" do
@@ -62,7 +62,7 @@ describe Game do
       input = StringIO.new("2")
       console = Console.new(@output, input)
       display = Display.new(console, @message, @validator)
-      players = [ComputerPlayer.new(@board, display, Mark::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Mark::PLAYER_TWO_MARK)]
+      players = [ComputerPlayerRandom.new(@board, display, Mark::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Mark::PLAYER_TWO_MARK)]
       game = Game.new(display, @board, players)
       game.play
       expect(@output.string).to include("Player one wins")

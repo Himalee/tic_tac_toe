@@ -1,14 +1,19 @@
 require "player"
-require "computer_player"
+require "computer_player_random"
+require "board"
+require "validator"
+require "message"
+require "display"
+require "console"
 
-describe ComputerPlayer do
+describe ComputerPlayerRandom do
 
   before :each do
     @board = Board.new(3)
-    validator = MoveValidator.new(@board)
+    validator = Validator.new(@board)
     message = Message.new
     display = Display.new(message, validator)
-    @computer_player = ComputerPlayer.new(@board, display, "")
+    @computer_player = ComputerPlayerRandom.new(@board, display, "")
   end
 
   it "returns number between 1 and 9" do
