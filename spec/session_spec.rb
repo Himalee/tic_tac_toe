@@ -14,7 +14,7 @@ describe Session do
     display = Display.new(console, message, validator)
     game_mode = GameMode.new(display)
     player_factory = PlayerFactory.new
-    game_factory = GameFactory.new(player_factory, game_mode, display, board)
+    game_factory = GameFactory.new(player_factory, game_mode, display)
     session = Session.new(game_factory, display)
     session.start
     expect(output.string).to include("draw")

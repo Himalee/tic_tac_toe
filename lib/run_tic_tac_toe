@@ -16,9 +16,8 @@ require_relative "session"
 require_relative "validator"
 require_relative "computer_player_ai"
 
-board = Board.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
 validator = Validator.new
 display = Display.new(Message.new, validator)
-game_factory = GameFactory.new(PlayerFactory.new, GameMode.new(display), display, board)
+game_factory = GameFactory.new(PlayerFactory.new, GameMode.new(display), display)
 session = Session.new(game_factory, display)
 session.start
