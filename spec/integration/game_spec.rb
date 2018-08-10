@@ -6,6 +6,7 @@ require "message"
 require "console"
 require "display"
 require "human_player"
+require "computer_player_ai"
 
 describe Game do
 
@@ -14,7 +15,7 @@ describe Game do
     @board = Board.new(grid)
     @output = StringIO.new
     @message = Message.new
-    @validator = Validator.new(@board)
+    @validator = Validator.new
   end
 
   context "human vs human game" do
@@ -51,21 +52,29 @@ describe Game do
 
   context "computer vs human game" do
     it "returns player one wins" do
-      @board.mark_board(1, "X")
-      @board.mark_board(2, "O")
-      @board.mark_board(3, "X")
-      @board.mark_board(4, "O")
-      @board.mark_board(5, "X")
-      @board.mark_board(6, "O")
-      @board.mark_board(8, "X")
-      @board.mark_board(7, "O")
+      grid = ["X", "O", "X", "O", "X", "O", "O", "X", 9]
+      board = Board.new(grid)
       input = StringIO.new("2")
       console = Console.new(@output, input)
       display = Display.new(console, @message, @validator)
-      players = [ComputerPlayerRandom.new(@board, display, Mark::PLAYER_ONE_MARK), HumanPlayer.new(@board, display, Mark::PLAYER_TWO_MARK)]
-      game = Game.new(display, @board, players)
+      players = [ComputerPlayerRandom.new(board, display, Mark::PLAYER_ONE_MARK), HumanPlayer.new(board, display, Mark::PLAYER_TWO_MARK)]
+      game = Game.new(display, board, players)
       game.play
       expect(@output.string).to include("Player one wins")
+    end
+  end
+
+  context "computer vs computer game" do
+    xit "returns player one wins" do
+      grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      board = Board.new(grid)
+      input = StringIO.new("6")
+      console = Console.new(@output, input)
+      display = Display.new(console, @message, @validator)
+      players = [ComputerPlayerAI.new(board, display, Mark::PLAYER_ONE_MARK), ComputerPlayerAI.new(board, display, Mark::PLAYER_TWO_MARK)]
+      game = Game.new(display, board, players)
+      game.play
+      expect(@output.string).to include("draw")
     end
   end
 end

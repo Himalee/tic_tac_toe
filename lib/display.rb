@@ -34,9 +34,9 @@ class Display
     @console.present(@message.prompt_for_cell)
   end
 
-  def get_valid_cell
+  def get_valid_cell(board)
     choice = receive_integer
-    until @validator.cell?(choice)
+    until @validator.cell?(board, choice)
       choose_cell
       choice = receive_integer
     end

@@ -28,8 +28,8 @@ class Game
   def turns
     until @board.end_of_game?(@board.grid)
       @display.choose_cell
-      number = current_player.get_cell
-      @board.mark_board(number, current_player.mark)
+      number = current_player.get_cell(@board)
+      @board = @board.mark_board(number, current_player.mark)
       @display.present_board_with_squares(@board)
       next_player
     end

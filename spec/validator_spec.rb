@@ -1,19 +1,19 @@
 require "validator"
+require "board"
 
 describe Validator do
 
-  before :each do
-    grid = (1..9).to_a
-    @board = Board.new(grid)
-    @validator = Validator.new(@board)
-  end
-
   it "returns true given valid choice" do
-    expect(@validator.cell?(1)).to be true
+    grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    board = Board.new(grid)
+    validator = Validator.new
+    expect(validator.cell?(board, 1)).to be true
   end
 
   it "returns false given invalid choice" do
-    @board.mark_board(1, "X")
-    expect(@validator.cell?(1)).to be false
+    grid = ["X", 2, 3, 4, 5, 6, 7, 8, 9]
+    board = Board.new(grid)
+    validator = Validator.new
+    expect(validator.cell?(board, 1)).to be false
   end
 end

@@ -10,7 +10,7 @@ describe Display do
     @board = Board.new(grid)
     @output = StringIO.new
     @message = Message.new
-    @validator = Validator.new(@board)
+    @validator = Validator.new
   end
 
   it "presents 3x3 board" do
