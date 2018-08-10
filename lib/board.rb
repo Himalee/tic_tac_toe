@@ -4,13 +4,9 @@ class Board
 
   FIRST_ELEMENT = 0
 
-  def initialize(size)
-    @dimension = size
-    @grid = create_grid
-  end
-
-  def create_grid
-    (1..(max_number_of_cells)).to_a
+  def initialize(grid)
+    @grid = grid
+    @dimension = Math.sqrt(grid.size)
   end
 
   def mark_board(cell_number, mark)

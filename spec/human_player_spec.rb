@@ -7,7 +7,8 @@ require "human_player"
 describe HumanPlayer do
 
   before :each do
-    @board = Board.new(3)
+    grid = (1..9).to_a
+    @board = Board.new(grid)
     @output = StringIO.new
     @message = Message.new
     @validator = Validator.new(@board)

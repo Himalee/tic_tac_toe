@@ -10,8 +10,8 @@ require "human_player"
 describe Game do
 
   before :each do
-    dimension = 3
-    @board = Board.new(dimension)
+    grid = (1..9).to_a
+    @board = Board.new(grid)
     @output = StringIO.new
     @message = Message.new
     @validator = Validator.new(@board)

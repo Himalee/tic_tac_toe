@@ -9,7 +9,8 @@ require "console"
 describe ComputerPlayerRandom do
 
   before :each do
-    @board = Board.new(3)
+    grid = (1..9).to_a
+    @board = Board.new(grid)
     validator = Validator.new(@board)
     message = Message.new
     display = Display.new(message, validator)

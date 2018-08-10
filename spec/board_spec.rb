@@ -3,16 +3,11 @@ require "board"
 describe Board do
 
   before :each do
-    size = 3
-    @board = Board.new(size)
-    @grid = @board.create_grid
+    @grid = (1..9).to_a
+    @board = Board.new(@grid)
   end
 
   let :mark { "X" }
-
-  it "returns 3x3 grid" do
-    expect(@board.create_grid).to eql([1, 2, 3, 4, 5, 6, 7, 8, 9])
-  end
 
   it "returns a marked board given number 1" do
     cell_number = 1
