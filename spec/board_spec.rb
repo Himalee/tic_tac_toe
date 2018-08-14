@@ -3,7 +3,7 @@ require "board"
 describe Board do
 
   before :each do
-    @grid = (1..9).to_a
+    @grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     @board = Board.new(@grid)
   end
 
@@ -21,24 +21,22 @@ describe Board do
     expect(another_new_board.grid).to eql([1, "X", "X", 4, 5, 6, 7, 8, 9])
   end
 
-  it "returns possible rows" do
-    expect(@board.possible_rows(@grid)).to eql([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-  end
-
-  it "returns possible columns" do
-    expect(@board.possible_columns(@grid)).to eql([[1, 4, 7], [2, 5, 8], [3, 6, 9]])
-  end
-
-  it "returns possible diagonals" do
-    expect(@board.possible_diagonals(@grid)).to eql([[1, 5, 9], [3, 5, 7]])
-  end
-
   it "returns false given board with no wins" do
     expect(@board.win?(@grid)).to be false
   end
 
   it "returns true given board with a winning row" do
     grid = ["X", "X", "X", 4, 5, 6, 7, 8, 9]
+    expect(@board.win?(grid)).to be true
+  end
+
+  it "returns true given board with a winning column" do
+    grid = ["X", 2, 3, "X", 5, 6, "X", 8, 9]
+    expect(@board.win?(grid)).to be true
+  end
+
+  it "returns true given board with a winning diagonal" do
+    grid = ["X", 2, 3, 4, "X", 6, 7, 8, "X"]
     expect(@board.win?(grid)).to be true
   end
 

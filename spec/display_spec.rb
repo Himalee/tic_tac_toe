@@ -6,7 +6,7 @@ require "console"
 describe Display do
 
   before :each do
-    grid = (1..9).to_a
+    grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     @board = Board.new(grid)
     @output = StringIO.new
     @message = Message.new

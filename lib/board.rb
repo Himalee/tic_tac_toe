@@ -25,28 +25,12 @@ class Board
     grid
   end
 
-  def possible_rows(grid)
-    grid.each_slice(@dimension).to_a
-  end
-
-  def possible_columns(grid)
-    possible_rows(grid).transpose
-  end
-
-  def possible_diagonals(grid)
-    diagonals = []
-    position = FIRST_ELEMENT
-    diagonals << add_diagonal(grid, position, :+)
-    diagonals << add_diagonal(grid, position + @dimension - 1, :-)
-    diagonals
-  end
-
   def end_of_game?(grid)
     win?(grid) || draw?(grid)
   end
 
   def win?(grid)
-    all_winning_combinations(grid).any? { |line| includes_identical_elements?(line)}
+    all_winning_combinations(grid).any? { |line| includes_identical_elements?(line) && !line.include?(nil)}
   end
 
   def winning_mark(grid)
@@ -69,6 +53,23 @@ class Board
   end
 
   private
+
+  def possible_rows(grid)
+    postions = grid.each_index.to_a
+    grid.each_slice(@dimension).to_a
+  end
+
+  def possible_columns(grid)
+    possible_rows(grid).transpose
+  end
+
+  def possible_diagonals(grid)
+    diagonals = []
+    position = FIRST_ELEMENT
+    diagonals << add_diagonal(grid, position, :+)
+    diagonals << add_diagonal(grid, position + @dimension - 1, :-)
+    diagonals
+  end
 
   def index_position(cell_number)
     cell_number - 1
