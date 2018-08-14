@@ -1,6 +1,4 @@
-require "coveralls"
 require "board"
-Coveralls.wear!
 
 describe Board do
 

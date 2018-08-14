@@ -11,3 +11,6 @@ The object of Tic Tac Toe is to get three in a row. You play on a three by three
 ### To run tests:
 
 1. Use ```rspec``` command
+
+
+[![Coverage Status](https://coveralls.io/repos/github/Himalee/tic_tac_toe/badge.svg?branch=master)](https://coveralls.io/github/Himalee/tic_tac_toe?branch=master)
