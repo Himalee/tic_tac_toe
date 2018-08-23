@@ -9,18 +9,13 @@ class Board
     @dimension = Math.sqrt(grid.size)
   end
 
-  def mark_board(cell_number, mark)
+  def new_board(cell_number, mark)
     current_grid = @grid.dup
     new_grid = mark_grid(current_grid, cell_number, mark)
     Board.new(new_grid)
   end
 
   def mark_grid(grid, cell_number, mark)
-    grid[index_position(cell_number)] = mark
-    grid
-  end
-
-  def new_board(grid, cell_number, mark)
     grid[index_position(cell_number)] = mark
     grid
   end

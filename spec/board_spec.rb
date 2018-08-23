@@ -11,13 +11,13 @@ describe Board do
 
   it "returns a marked board given number 1" do
     cell_number = 1
-    new_board = @board.mark_board(cell_number, mark)
+    new_board = @board.new_board(cell_number, mark)
     expect(new_board.grid).to eql(["X", 2, 3, 4, 5, 6, 7, 8, 9])
   end
 
   it "returns a marked board given number 2 and 3" do
-    new_board = @board.mark_board(2, mark)
-    another_new_board = new_board.mark_board(3, mark)
+    new_board = @board.new_board(2, mark)
+    another_new_board = new_board.new_board(3, mark)
     expect(another_new_board.grid).to eql([1, "X", "X", 4, 5, 6, 7, 8, 9])
   end
 

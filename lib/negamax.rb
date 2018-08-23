@@ -9,7 +9,7 @@ class Negamax
     return -1 if @board.win?(grid)
     @board.available_positions(grid).each do |cell|
       possible_grid = grid.dup
-      other_grid = @board.new_board(possible_grid, cell, mark)
+      other_grid = @board.mark_grid(possible_grid, cell, mark)
       best_score[cell] = -1 * get_best_move(other_grid, depth + 1, {}, opponent_mark(mark))
     end
     best_move = best_score.max_by { |key, value| value }[0]

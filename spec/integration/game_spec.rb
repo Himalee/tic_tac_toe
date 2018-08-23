@@ -65,7 +65,7 @@ describe Game do
   end
 
   context "computer vs computer game" do
-    xit "returns player one wins" do
+    it "returns player one wins" do
       grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
       board = Board.new(grid)
       input = StringIO.new("6")
