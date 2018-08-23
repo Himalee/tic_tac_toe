@@ -9,7 +9,8 @@ require "mark"
 describe Negamax do
 
   before :each do
-    board = Board.new(3)
+    grid = (1..9).to_a
+    board = Board.new(grid)
     @negamax = Negamax.new(board)
   end
 

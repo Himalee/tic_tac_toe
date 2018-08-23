@@ -4,38 +4,20 @@ class Board
 
   FIRST_ELEMENT = 0
 
-  def initialize(size)
-    @dimension = size
-    @grid = create_grid
+  def initialize(grid)
+    @grid = grid
+    @dimension = Math.sqrt(grid.size)
   end
 
-  def create_grid
-    (1..(max_number_of_cells)).to_a
+  def new_board(cell_number, mark)
+    current_grid = @grid.dup
+    new_grid = mark_grid(current_grid, cell_number, mark)
+    Board.new(new_grid)
   end
 
-  def mark_board(cell_number, mark)
-    @grid[index_position(cell_number)] = mark
-  end
-
-  def new_board(grid, cell_number, mark)
+  def mark_grid(grid, cell_number, mark)
     grid[index_position(cell_number)] = mark
     grid
-  end
-
-  def possible_rows(grid)
-    grid.each_slice(@dimension).to_a
-  end
-
-  def possible_columns(grid)
-    possible_rows(grid).transpose
-  end
-
-  def possible_diagonals(grid)
-    diagonals = []
-    position = FIRST_ELEMENT
-    diagonals << add_diagonal(grid, position, :+)
-    diagonals << add_diagonal(grid, position + @dimension - 1, :-)
-    diagonals
   end
 
   def end_of_game?(grid)
@@ -43,7 +25,7 @@ class Board
   end
 
   def win?(grid)
-    all_winning_combinations(grid).any? { |line| includes_identical_elements?(line)}
+    all_winning_combinations(grid).any? { |line| includes_identical_elements?(line) && !line.include?(nil)}
   end
 
   def winning_mark(grid)
@@ -66,6 +48,23 @@ class Board
   end
 
   private
+
+  def possible_rows(grid)
+    postions = grid.each_index.to_a
+    grid.each_slice(@dimension).to_a
+  end
+
+  def possible_columns(grid)
+    possible_rows(grid).transpose
+  end
+
+  def possible_diagonals(grid)
+    diagonals = []
+    position = FIRST_ELEMENT
+    diagonals << add_diagonal(grid, position, :+)
+    diagonals << add_diagonal(grid, position + @dimension - 1, :-)
+    diagonals
+  end
 
   def index_position(cell_number)
     cell_number - 1

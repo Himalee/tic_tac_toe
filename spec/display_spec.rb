@@ -6,10 +6,11 @@ require "console"
 describe Display do
 
   before :each do
-    @board = Board.new(3)
+    grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    @board = Board.new(grid)
     @output = StringIO.new
     @message = Message.new
-    @validator = Validator.new(@board)
+    @validator = Validator.new
   end
 
   it "presents 3x3 board" do
